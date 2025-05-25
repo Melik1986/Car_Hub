@@ -1,0 +1,29 @@
+[
+  {
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2022,
+    "city_mpg": 28,
+    "transmission": "a",
+    "drive": "fwd",
+    "imageUrl": "/public/images/camry.png"
+  },
+  {
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2023,
+    "city_mpg": 32,
+    "transmission": "a",
+    "drive": "fwd",
+    "imageUrl": "/public/images/civic.jpg"
+  },
+  {
+    "make": "Ford",
+    "model": "Mustang",
+    "year": 2021,
+    "city_mpg": 22,
+    "transmission": "m",
+    "drive": "rwd",
+    "imageUrl": "/public/images/mustang.jpg"
+  }
+]
