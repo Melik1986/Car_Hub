@@ -52,7 +52,7 @@
 }
 
 .hero__image-container {
-  @apply relative w-full h-[260px] sm:h-[320px] flex justify-center items-center xl:relative xl:flex-[1.6] xl:h-full;
+  @apply relative w-full h-[260px] sm:h-[320px] flex justify-center items-center xl:relative xl:flex-[1.6];
 }
 
 .hero__image {
@@ -61,7 +61,7 @@
 
 .hero__image-overlay {
   /* Base styles */
-  @apply absolute -top-[23rem] xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-[105%] h-[50vh] overflow-hidden;
+  @apply absolute -top-[23rem] xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-[105%] h-[50vh] overflow-hidden;
 }
 
 .hero__bottom-mask {
