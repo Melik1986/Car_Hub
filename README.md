@@ -519,6 +519,8 @@ module.exports = {
 
 ## <a name="links">🔗 Links</a>
 
+**Live Preview**: https://car-hub-lac-seven.vercel.app/
+
 Assets used in the project are [here](https://drive.google.com/file/d/1Ague8aTHA6JSrzy3kscEZmrJQdtDxqwy/view)
 
 ## <a name="more">🚀 More</a>
