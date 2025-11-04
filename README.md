@@ -114,6 +114,29 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
+### Real Photo Mode Without Keys
+
+For deterministic real photos without any external API keys:
+
+- Place your images in `public/images` (e.g., `/images/toyota-camry.jpg`, `/images/tesla-model-3.jpg`).
+- Add `imageUrl` to entries in `server/data/cars.json`:
+
+```json
+{
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2022,
+  "city_mpg": 28,
+  "transmission": "a",
+  "drive": "fwd",
+  "fuel_type": "Gas",
+  "imageUrl": "/images/toyota-camry.jpg"
+}
+```
+
+- The UI prefers `car.imageUrl` first. If it’s missing, it falls back to generated images (Imagin Studio if a valid key is set, otherwise Unsplash).
+- This works offline once images are stored locally.
+
 ## <a name="snippets">🕸️ Snippets</a>
 
 <details>

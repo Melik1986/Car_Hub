@@ -6,7 +6,8 @@
     "city_mpg": 28,
     "transmission": "a",
     "drive": "fwd",
-    "imageUrl": "/public/images/camry.png"
+    "fuel_type": "Gas",
+    "imageUrl": "/images/toyota-camry-2022.png"
   },
   {
     "make": "Honda",
@@ -15,7 +16,8 @@
     "city_mpg": 32,
     "transmission": "a",
     "drive": "fwd",
-    "imageUrl": "/public/images/civic.jpg"
+    "fuel_type": "Gas",
+    "imageUrl": "/images/honda-civic-2023.png"
   },
   {
     "make": "Ford",
@@ -24,6 +26,90 @@
     "city_mpg": 22,
     "transmission": "m",
     "drive": "rwd",
-    "imageUrl": "/public/images/mustang.jpg"
+    "fuel_type": "Gas",
+    "imageUrl": "/images/ford-mustang-2021.png"
+  },
+  {
+    "make": "Tesla",
+    "model": "Model 3",
+    "year": 2023,
+    "city_mpg": 120,
+    "transmission": "a",
+    "drive": "rwd",
+    "fuel_type": "Electricity",
+    "imageUrl": "/images/tesla-model-3-2023.png"
+  },
+  {
+    "make": "BMW",
+    "model": "3 Series",
+    "year": 2020,
+    "city_mpg": 26,
+    "transmission": "a",
+    "drive": "rwd",
+    "fuel_type": "Gas",
+    "imageUrl": "/images/bmw-3-series-2020.png"
+  },
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": 2019,
+    "city_mpg": 27,
+    "transmission": "a",
+    "drive": "awd",
+    "fuel_type": "Gas"
+  },
+  {
+    "make": "Mercedes-Benz",
+    "model": "C-Class",
+    "year": 2018,
+    "city_mpg": 25,
+    "transmission": "a",
+    "drive": "rwd",
+    "fuel_type": "Gas"
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Tiguan",
+    "year": 2021,
+    "city_mpg": 24,
+    "transmission": "a",
+    "drive": "awd",
+    "fuel_type": "Gas"
+  },
+  {
+    "make": "Nissan",
+    "model": "Altima",
+    "year": 2022,
+    "city_mpg": 28,
+    "transmission": "a",
+    "drive": "fwd",
+    "fuel_type": "Gas"
+  },
+  {
+    "make": "Hyundai",
+    "model": "Sonata",
+    "year": 2020,
+    "city_mpg": 27,
+    "transmission": "a",
+    "drive": "fwd",
+    "fuel_type": "Gas"
+  },
+  {
+    "make": "Kia",
+    "model": "Sportage",
+    "year": 2021,
+    "city_mpg": 25,
+    "transmission": "a",
+    "drive": "awd",
+    "fuel_type": "Gas"
+  },
+  {
+    "make": "Subaru",
+    "model": "Outback",
+    "year": 2019,
+    "city_mpg": 26,
+    "transmission": "a",
+    "drive": "awd",
+    "fuel_type": "Gas"
   }
 ]

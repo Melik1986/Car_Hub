@@ -1,4 +1,5 @@
 import { CarProps, FilterProps } from "@types";
+import localCars from "@server/data/cars.json";
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
@@ -41,47 +42,84 @@ export const deleteSearchParams = (type: string) => {
   return newPathname;
 };
 
+const filterCarsLocal = (cars: CarProps[], filters: FilterProps) => {
+  const { manufacturer = "", model = "", fuel = "", year = 0, limit = 10 } = filters;
+  const man = manufacturer.toLowerCase();
+  const mdl = model.toLowerCase();
+  const fl = fuel.toLowerCase();
+  const yr = Number(year) || undefined;
+
+  return cars
+    .filter((c) => (
+      (!man || c.make?.toLowerCase().includes(man)) &&
+      (!mdl || c.model?.toLowerCase().includes(mdl)) &&
+      (!fl || c.fuel_type?.toLowerCase() === fl) &&
+      (!yr || c.year === yr)
+    ))
+    .slice(0, limit || 10);
+};
+
 export async function fetchCars(filters: FilterProps) {
-  const { manufacturer, year, model, limit, fuel } = filters;
- try {
-    // Set the required headers for the API request
-    const headers: HeadersInit = {
-      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
-      "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
-    };
+  const { manufacturer = "", year = 2022, model = "", limit = 10, fuel = "" } = filters;
 
-    // Set the required headers for the API request
-    const response = await fetch(
-      `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
-      {
-        headers: headers,
-      }
-    );
+  const query = new URLSearchParams();
+  if (manufacturer) query.set("manufacturer", manufacturer);
+  if (model) query.set("model", model);
+  if (fuel) query.set("fuel", fuel);
+  if (year) query.set("year", String(year));
+  query.set("limit", String(limit));
 
-    // Parse the response as JSON
-    const result = await response.json();
-
-    return result;
+  const rapidKey = process.env.NEXT_PUBLIC_RAPID_API_KEY;
+  try {
+    if (rapidKey) {
+      const headers: HeadersInit = {
+        "X-RapidAPI-Key": rapidKey,
+        "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
+      };
+      const response = await fetch(
+        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+        { headers }
+      );
+      if (!response.ok) throw new Error(`Primary API failed: ${response.status}`);
+      return await response.json();
+    }
   } catch (error) {
     console.error("Error fetching from primary API, trying fallback:", error);
-    const fallbackResponse = await fetch("/api/cars");
-    return fallbackResponse.json();
   }
 
-  return result;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  try {
+    const fallbackResponse = await fetch(`${baseUrl}/api/cars?${query.toString()}`);
+    if (!fallbackResponse.ok) throw new Error(`Fallback API failed: ${fallbackResponse.status}`);
+    return await fallbackResponse.json();
+  } catch (err) {
+    console.warn("Fallback API failed, using embedded local data:", err);
+    return filterCarsLocal(localCars as CarProps[], { manufacturer, model, fuel, year, limit });
+  }
 }
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
-  const url = new URL("https://cdn.imagin.studio/getimage");
   const { make, model, year } = car;
 
-  url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || '');
+  const customer = process.env.NEXT_PUBLIC_IMAGIN_API_KEY;
+  const hasCustomer = !!customer && customer !== 'hrjavascript-mastery';
+
+  // Fallback without API key: use Unsplash (no API token needed)
+  if (!hasCustomer) {
+    const query = encodeURIComponent(`${make} ${model} ${year} car`);
+    return `https://source.unsplash.com/800x600/?${query}`;
+  }
+
+  const url = new URL("https://cdn.imagin.studio/getimage");
+  url.searchParams.append('customer', customer!);
   url.searchParams.append('make', make);
-  url.searchParams.append('modelFamily', model.split(" ")[0]);
+  // Use full model name to better handle cases like "3 Series" or "Model 3"
+  url.searchParams.append('modelFamily', model);
   url.searchParams.append('zoomType', 'fullscreen');
   url.searchParams.append('modelYear', `${year}`);
-  // url.searchParams.append('zoomLevel', zoomLevel);
-  url.searchParams.append('angle', `${angle}`);
+  if (angle) {
+    url.searchParams.append('angle', `${angle}`);
+  }
 
-  return `${url}`;
+  return url.toString();
 }
