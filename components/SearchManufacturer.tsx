@@ -18,9 +18,13 @@ const SearchManufacturer = ({ manufacturer, setManuFacturer }: SearchManuFacture
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
+  const handleChange = (value: string | null) => {
+    setManuFacturer(value ?? "");
+  };
+
   return (
     <div className='search-manufacturer'>
-      <Combobox value={manufacturer} onChange={setManuFacturer}>
+      <Combobox value={manufacturer} onChange={handleChange}>
         <div className='relative w-full'>
           {/* Button for the combobox. Click on the icon to see the complete dropdown */}
           <Combobox.Button className='absolute top-[14px]'>
