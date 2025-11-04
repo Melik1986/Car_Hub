@@ -17,7 +17,7 @@
 }
 
 .padding-x {
-  @apply sm:px-16 px-6;
+  @apply px-6 sm:px-16;
 }
 
 .padding-y {
@@ -35,32 +35,39 @@
 .custom-btn {
   @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
 }
+
 /* END: General styles */
 
 /* START: Hero styles */
 .hero {
-  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
+  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto min-h-[50vh] items-start overflow-visible mt-16;
 }
 
 .hero__title {
-  @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold;
+  @apply 2xl:text-[48px] sm:text-[42px] text-[30px] font-extrabold leading-tight;
 }
 
 .hero__subtitle {
-  @apply text-[27px] text-black-100 font-light mt-5;
+  @apply text-black-100 font-light mt-5 text-[16px] md:text-[18px] leading-snug;
 }
 
 .hero__image-container {
-  @apply xl:flex-[1.5] flex justify-end items-end w-full xl:h-screen;
+  @apply relative w-full h-[260px] sm:h-[320px] flex justify-center items-center xl:relative xl:flex-[1.6] xl:h-full;
 }
 
 .hero__image {
-  @apply relative xl:w-full w-[90%] xl:h-full h-[590px] z-0;
+  @apply relative w-full h-full z-0;
 }
 
 .hero__image-overlay {
-  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
+  /* Base styles */
+  @apply absolute -top-[22rem] xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-[105%] h-[50vh] overflow-hidden;
 }
+
+.hero__bottom-mask {
+  @apply absolute left-0 right-0 -bottom-6 h-6 bg-primary-blue-100 z-0 pointer-events-none;
+}
+
 /* END: Hero styles */
 
 /* START: Home styles */
@@ -84,6 +91,7 @@
 .home__error-container {
   @apply mt-16 flex justify-center items-center flex-col gap-2;
 }
+
 /* END: Home styles */
 
 /* START: Car Card styles */
@@ -130,6 +138,7 @@
 .car-card__btn-container {
   @apply hidden group-hover:flex absolute bottom-0 w-full z-10;
 }
+
 /* END: Car Card styles */
 
 /* START: Car Details styles */
@@ -144,6 +153,7 @@
 .car-details__main-image {
   @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
 }
+
 /* END: Car Details styles */
 
 /* START: Custom Filter styles */
@@ -154,11 +164,12 @@
 .custom-filter__options {
   @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
 }
+
 /* END: Custom Filter styles */
 
 /* START: Footer styles */
 .footer {
-  @apply flex flex-col text-black-100  mt-5 border-t border-gray-100;
+  @apply flex flex-col text-black-100 mt-5 border-t border-gray-100;
 }
 
 .footer__links-container {
@@ -182,31 +193,33 @@
 }
 
 .footer__copyrights-link {
-  @apply flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;
+  @apply flex-1 flex sm:justify-end justify-center max-[640px]:mt-4 gap-10;
 }
+
 /* END: Footer styles */
 
 /* START: searchbar styles */
 .searchbar {
-  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+  @apply flex items-center justify-start max-[640px]:flex-col w-full relative max-[640px]:gap-4 max-w-3xl;
 }
 
 .searchbar__item {
-  @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+  @apply flex-1 max-[640px]:w-full flex justify-start items-center relative;
 }
 
 .searchbar__input {
-  @apply w-full h-[48px] pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+  @apply w-full h-[48px] pl-12 p-4 bg-light-white rounded-r-full max-[640px]:rounded-full outline-none cursor-pointer text-sm;
 }
+
 /* END: searchbar styles */
 
 /* START: search manufacturer styles */
 .search-manufacturer {
-  @apply flex-1 max-sm:w-full flex justify-start items-center;
+  @apply flex-1 max-[640px]:w-full flex justify-start items-center;
 }
 
 .search-manufacturer__input {
-  @apply w-full h-[48px] pl-12 p-4 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-sm;
+  @apply w-full h-[48px] pl-12 p-4 rounded-l-full max-[640px]:rounded-full bg-light-white outline-none cursor-pointer text-sm;
 }
 
 .search-manufacturer__options {
@@ -216,4 +229,5 @@
 .search-manufacturer__option {
   @apply cursor-default select-none py-2 pl-10 pr-4;
 }
+
 /* END: search manufacturer styles */

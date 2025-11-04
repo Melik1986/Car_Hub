@@ -15,7 +15,7 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      <div className="flex-1 pt-36 padding-x">
+      <div className="relative z-10 flex-1 pt-20 sm:pt-24 md:pt-28 padding-x">
         <h1 className="hero__title">
           Find, book, rent a car—quick and super easy!
         </h1>
@@ -37,6 +37,7 @@ const Hero = () => {
         </div>
 
         <div className="hero__image-overlay" />
+        <div className="hero__bottom-mask" />
       </div>
     </div>
   );
