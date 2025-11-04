@@ -52,7 +52,7 @@
 }
 
 .hero__image-container {
-  @apply relative w-full h-[260px] sm:h-[320px] flex justify-center items-center xl:relative xl:flex-[1.6];
+  @apply relative w-full h-[260px] sm:h-[320px] flex justify-center items-center;
 }
 
 .hero__image {
